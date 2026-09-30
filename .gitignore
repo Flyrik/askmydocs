@@ -9,6 +9,9 @@ __pycache__/
 # Données générées
 chroma_db/
 
+# Dossier Data pour stocker les fichiers de données
+data/
+
 # Éditeur / OS
 .vscode/
 .DS_Store
