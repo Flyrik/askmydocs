@@ -1,0 +1,1284 @@
+Fondamentaux de l’algorithmique
+Kais Klai
+kais.klai@lipn.univ-paris13.fr
+Maître de Conférences , LIPN
+Université Paris 13 Sorbonne Paris Cité
+EFREI 21-22
+Fondamentaux de l’algorithmique
+1 / 94
+Introduction
+Qu’allons nous étudier cette année?
+EFREI 21-22
+Fondamentaux de l’algorithmique
+2 / 94
+Introduction
+Qu’allons nous étudier cette année?
+Nous allons essentiellement
+faire deux choses : Algorithmique et Programmation en Python
+et en langage C
+EFREI 21-22
+Fondamentaux de l’algorithmique
+2 / 94
+Introduction
+Qu’allons nous étudier cette année?
+Nous allons essentiellement
+faire deux choses : Algorithmique et Programmation en Python
+et en langage C
+1 Organisation
+1
+Cours
+2
+Travaux dirigés (exercices en langage algorithmique)
+3
+Travaux pratiques (exercices en Python/ langage C)
+EFREI 21-22
+Fondamentaux de l’algorithmique
+2 / 94
+Introduction
+Qu’allons nous étudier cette année?
+Nous allons essentiellement
+faire deux choses : Algorithmique et Programmation en Python
+et en langage C
+1 Organisation
+1
+Cours
+2
+Travaux dirigés (exercices en langage algorithmique)
+3
+Travaux pratiques (exercices en Python/ langage C)
+2 Evaluation (par semestre)
+EFREI 21-22
+Fondamentaux de l’algorithmique
+2 / 94
+Introduction
+Qu’allons nous étudier cette année?
+Nous allons essentiellement
+faire deux choses : Algorithmique et Programmation en Python
+et en langage C
+1 Organisation
+1
+Cours
+2
+Travaux dirigés (exercices en langage algorithmique)
+3
+Travaux pratiques (exercices en Python/ langage C)
+2 Evaluation (par semestre)
+1
+Algorithmique
+1
+Un contrôle écrit (CE) langage algorithmique
+2
+Un devoir écrit (DE) langage algorithmique
+3
+Trois interros (1/2h chacune) langage algorithmique
+EFREI 21-22
+Fondamentaux de l’algorithmique
+2 / 94
+Introduction
+Qu’allons nous étudier cette année?
+Nous allons essentiellement
+faire deux choses : Algorithmique et Programmation en Python
+et en langage C
+1 Organisation
+1
+Cours
+2
+Travaux dirigés (exercices en langage algorithmique)
+3
+Travaux pratiques (exercices en Python/ langage C)
+2 Evaluation (par semestre)
+1
+Algorithmique
+1
+Un contrôle écrit (CE) langage algorithmique
+2
+Un devoir écrit (DE) langage algorithmique
+3
+Trois interros (1/2h chacune) langage algorithmique
+2
+Programmation
+1
+Une évaluation rapide au début de chaque TP
+2
+Un examen sur machine
+3
+Un projet
+4
+Un devoir écrit (DE)
+EFREI 21-22
+Fondamentaux de l’algorithmique
+2 / 94
+Plan
+1
+Introduction
+Qu’est-ce qu’un algorithme?
+Qu’est-ce que la programmation?
+2
+Structure générale d’un algorithme
+3
+Variables
+Déclaration d’une variable
+Types des variables
+4
+Instructions
+Instruction d’aﬀectation
+Instructions d’entrée/sortie
+Instructions de test
+Les boucles
+EFREI 21-22
+Fondamentaux de l’algorithmique
+3 / 94
+Outline
+1
+Introduction
+Qu’est-ce qu’un algorithme?
+Qu’est-ce que la programmation?
+2
+Structure générale d’un algorithme
+3
+Variables
+Déclaration d’une variable
+Types des variables
+4
+Instructions
+Instruction d’aﬀectation
+Instructions d’entrée/sortie
+Instructions de test
+Les boucles
+EFREI 21-22
+Fondamentaux de l’algorithmique
+4 / 94
+Plan
+1
+Introduction
+Qu’est-ce qu’un algorithme?
+Qu’est-ce que la programmation?
+EFREI 21-22
+Fondamentaux de l’algorithmique
+5 / 94
+Qu’est-ce qu’un algorithme?
+EFREI 21-22
+Fondamentaux de l’algorithmique
+6 / 94
+Qu’est-ce qu’un algorithme?
+Un algorithme est une séquence ﬁnie d’instructions non ambigües
+permettant d’accomplir une tâche spéciﬁque.
+EFREI 21-22
+Fondamentaux de l’algorithmique
+6 / 94
+Qu’est-ce qu’un algorithme?
+Un algorithme est une séquence ﬁnie d’instructions non ambigües
+permettant d’accomplir une tâche spéciﬁque.
+Permet de résoudre un problème donné
+Un solution qui peut facilement être traduite en un programme
+Pas besoin de maîtriser un langage de programmation
+Indépendant de tout langage de programmation ...
+EFREI 21-22
+Fondamentaux de l’algorithmique
+6 / 94
+Qu’est-ce qu’un algorithme?
+§ L’algorithme est utilisé dans la vie courante.  
+§ Problème : J’ai soif 
+§ Chemin vers la solution (algorithme)
+§ Prendre un verre
+§ Le mettre sous le robinet 
+§ Ouvrir le robinet
+§ Attendre que le verre soit plein
+§ Fermer le robinet
+§ Solution: boire 
+https://www.educol.net/
+EFREI 21-22
+Fondamentaux de l’algorithmique
+7 / 94
+Un exemple
+Vous devez mesurer exactement 4 litres d’eau. Pour cela, vous ne
+disposez que de deux récipients : un récipient de 5 litres et un
+deuxième de 3 litres, et d’un robinet. Les actions que vous pouvez
+utiliser pour obtenir une solution sont :
+Remplir un récipient au robinet,
+Vider un récipient (à l’égout), et
+Transvaser un récipient dans un autre (lorsque l’on transvase, on
+s’arrête lorsque le récipient source est vide ou lorsque le récipient
+destination est plein, et on garde le restant dans le récipient
+source).
+EFREI 21-22
+Fondamentaux de l’algorithmique
+8 / 94
+Un exemple
+Une solution: (commentaires, en bleu, aident à la compréhension de
+l’algorithme)
+1. Remplir le récipient 3-l.
+2. Transvaser le récipient 3-l dans le récipient 5-l.
+3. Remplir le récipient 3-l.
+4. Transvaser le récipient 3-l dans le récipient 5-l.
+(Alors, il reste 1 litre dans le récipient 3-l.)
+5. Vider le récipient 5-l.
+6. Transvaser le récipient 3-l dans le récipient 5-l.
+(le récipient 3-l est vide, le récipient 5-l contient 1 l
+7. Remplir le récipient 3-l.
+8. Transvaser le récipient 3-l dans le récipient 5-l.
+(nous avons alors 4 litres dans le récipient 5-l.)
+EFREI 21-22
+Fondamentaux de l’algorithmique
+9 / 94
+Un exemple
+Une autre solution : (commentaires, en bleu, aident à la
+compréhension de l’algorithme)
+1. Remplir le récipient 5-l.
+2. Transvaser le récipient 5-l dans le récipient 3-l.
+(Alors, il y a 2 litres dans le récipient 5-l.)
+3. Vider le récipient 3-l.
+4. Transvaser le récipient 5-l dans le récipient 3-l.
+(le récipient 5-l est vide, et le récipient 3-l contient
+2 litres)
+5. Remplir le récipient 5-l.
+6. Transvaser le récipient 5-l dans le récipient 3-l.
+(un seul litre est versé dans le récipient 3-l
+il reste 4 litres dans le récipient 5-l).
+EFREI 21-22
+Fondamentaux de l’algorithmique
+10 / 94
+Un exemple
+Solution 1 VS Solution 2?
+EFREI 21-22
+Fondamentaux de l’algorithmique
+11 / 94
+Un exemple
+Solution 1 VS Solution 2?
+Solution 1: 8 opérations
+Solution 2: 6 opérations
+EFREI 21-22
+Fondamentaux de l’algorithmique
+11 / 94
+Un exemple
+Solution 1 VS Solution 2?
+Solution 1: 8 opérations
+Solution 2: 6 opérations
+En général: qu’est-ce qui fait qu’une solution est meilleure qu’une
+autre?
+Nombre d’opérations
+Taille de la mémoire utilisée
+EFREI 21-22
+Fondamentaux de l’algorithmique
+11 / 94
+Un exemple
+Solution 1 VS Solution 2?
+Solution 1: 8 opérations
+Solution 2: 6 opérations
+En général: qu’est-ce qui fait qu’une solution est meilleure qu’une
+autre?
+Nombre d’opérations
+Taille de la mémoire utilisée Ces deux critères ont une inﬂuence
+sur le temps d’exécution
+EFREI 21-22
+Fondamentaux de l’algorithmique
+11 / 94
+Un exemple
+Solution 1 VS Solution 2?
+Solution 1: 8 opérations
+Solution 2: 6 opérations
+En général: qu’est-ce qui fait qu’une solution est meilleure qu’une
+autre?
+Nombre d’opérations
+Taille de la mémoire utilisée Ces deux critères ont une inﬂuence
+sur le temps d’exécution
+Clareté/lisibilité
+indentation
+commentaires
+EFREI 21-22
+Fondamentaux de l’algorithmique
+11 / 94
+Etapes à suivre pour réussir la résolution
+informatique d’un problème
+1 Phase d’analyse
+2 Phase de conception
+3 Phase de rédaction de l’algorithme
+4 Phase d’implémentation
+EFREI 21-22
+Fondamentaux de l’algorithmique
+12 / 94
+Etapes à suivre pour réussir la résolution
+informatique d’un problème
+1.
+Analyse
+§
+Réflexion dans le but d’identifier le problème;
+§
+Sélection des données à utiliser;
+§
+Détermination claire du résultat attendu;
+§
+Détermination des cas particuliers (s’il y en a );
+§
+Le traitement à effectuer pour chaque situation;
+§
+Découpage du problème en succession de tâches simples. 
+EFREI 21-22
+Fondamentaux de l’algorithmique
+13 / 94
+Etapes à suivre pour réussir la résolution
+informatique d’un problème
+2. Conception
+§
+Transformation de données en résultats;
+§
+Détermination du séquencement des tâches élémentaires; 
+§
+Prise en charge des cas particuliers;
+Exemple 1 : Assembler un robot 
+Donnée: Parties d’un robot (1 tête, 2 bras, 2 jambes , 1 corps)
+Tâche : assembler les parties 
+Objectif: Obtenir un robot
+https://www.canstockphoto.fr/
+EFREI 21-22
+Fondamentaux de l’algorithmique
+14 / 94
+Etapes à suivre pour réussir la résolution
+informatique d’un problème
+2. Conception
+Exemple 1 : Assembler un robot 
+Donnée: Parties d’un robot (1 tête, 2 bras, 2 jambes , 1 corps)
+Tâche : assembler les parties 
+Objectif: Obtenir un robot
+Algorithme 1 : 
+Ajouter les deux jambes 
+Ajouter les deux bras
+Placer la tête sur le corps
+Qu’est-ce 
+qui ne va 
+pas ?
+EFREI 21-22
+Fondamentaux de l’algorithmique
+15 / 94
+Etapes à suivre pour réussir la résolution
+informatique d’un problème
+2. Conception
+Exemple 1 : Assembler un robot 
+Donnée: Parties d’un robot (1 tête, 2 bras, 2 jambes , 1 corps)
+Tâche : assembler les parties 
+Objectif: Obtenir un robot
+Ajouter UNE jambe EN BAS A DROITE du corps
+Ajouter UNE jambe EN BAS A GAUCHE du corps
+Ajouter UN bras A DROITE du corps
+Ajouter UN bras A GAUCHE du corps
+Placer la tête sur LE HAUT du corps
+Algorithme 2 : 
+EFREI 21-22
+Fondamentaux de l’algorithmique
+16 / 94
+Etapes à suivre pour réussir la résolution
+informatique d’un problème
+2. Conception
+Règle N°1: 
+Être précis et très clair dans la détermination des séquences 
+EFREI 21-22
+Fondamentaux de l’algorithmique
+17 / 94
+Etapes à suivre pour réussir la résolution
+informatique d’un problème
+2. Conception
+Exemple 2: Se préparer pour sortir 
+Voici une suite d’étapes à suivre pour se préparer à sortir 
+Mettre chaussettes et chaussures
+Mettre bonnet
+Mettre jaquette
+Qu’est-ce qui 
+ne va pas ?
+EFREI 21-22
+Fondamentaux de l’algorithmique
+18 / 94
+Etapes à suivre pour réussir la résolution
+informatique d’un problème
+2. Conception
+Règle N°2: 
+Être précis sur l’ordre des séquences. 
+EFREI 21-22
+Fondamentaux de l’algorithmique
+19 / 94
+Etapes à suivre pour réussir la résolution
+informatique d’un problème
+3. Création de l’algorithme
+§
+Mettre en œuvre les actions élémentaires à l’aide d’une notation spécifique :  
+§
+Déclaration des variables 
+§
+Demande de données à l’utilisateur 
+§
+Boucles 
+§
+Conditions & test 
+§
+Affichage / Stockage du résultat 
+§
+…. 
+4. Encodage
+§ Ecriture des actions en utilisant un langage de programmation: Instructions 
+EFREI 21-22
+Fondamentaux de l’algorithmique
+20 / 94
+Représentation d’un algorithme
+1 Avec du texte (voir exemple précédent)
+2 Avec un organigramme
+Début
+Aller au parc
+A-t-il une laisse 
+autour du cou ?
+Non       
+Oui
+Mettre une laisse 
+Est-il fatigué?
+Oui       
+Jouer avec le chiot
+Rentrer à la maison
+Non
+Fin
+3 Avec un pseudo-code
+EFREI 21-22
+Fondamentaux de l’algorithmique
+21 / 94
+Organigramme
+Un organigramme permet de décrire plus facilement qu’avec un
+texte le déroulement d’un cycle d’un système automatisé.
+Cette représentation s’eﬀectue avec 3 types de nœuds :
+Début / Fin
+Un ovale correspond au 
+début ou Fin (si fin il y a) 
+de l’organigramme
+Action à suivre
+Un rectangle correspond 
+au une action à effectuer
+Un losange correspond à 
+une question à laquelle 
+on peut répondre 
+uniquement par oui ou 
+par non
+Décision à 
+prendre
+Oui
+Non
+EFREI 21-22
+Fondamentaux de l’algorithmique
+22 / 94
+Exemple d’organigramme : promener un chiot
+Début
+Aller au parc
+A-t-il une laisse 
+autour du cou ?
+Non       
+Oui
+Mettre une laisse 
+Est-il fatigué?
+Oui       
+Jouer avec le chiot
+Rentrer à la maison
+Non
+Fin
+EFREI 21-22
+Fondamentaux de l’algorithmique
+23 / 94
+Plan
+1
+Introduction
+Qu’est-ce qu’un algorithme?
+Qu’est-ce que la programmation?
+EFREI 21-22
+Fondamentaux de l’algorithmique
+24 / 94
+Qu’est-ce que la programmation?
+Concevoir, écrire, modiﬁer et tester un programme écrit en utilisant
+un langage de programmation.
+EFREI 21-22
+Fondamentaux de l’algorithmique
+25 / 94
+Qu’est-ce que la programmation?
+Concevoir, écrire, modiﬁer et tester un programme écrit en utilisant
+un langage de programmation.
+La programmation consiste principalement en la traduction d’un
+algorithme dans un langage de programmation cible.
+EFREI 21-22
+Fondamentaux de l’algorithmique
+25 / 94
+Qu’est-ce que la programmation?
+Concevoir, écrire, modiﬁer et tester un programme écrit en utilisant
+un langage de programmation.
+La programmation consiste principalement en la traduction d’un
+algorithme dans un langage de programmation cible.
+Un langage de programmation possède des règles d’écriture
+strictes (règles syntaxiques), mais permet d’avoir un résultat
+concret par un ordinateur.
+EFREI 21-22
+Fondamentaux de l’algorithmique
+25 / 94
+Qu’est-ce que la programmation?
+Concevoir, écrire, modiﬁer et tester un programme écrit en utilisant
+un langage de programmation.
+La programmation consiste principalement en la traduction d’un
+algorithme dans un langage de programmation cible.
+Un langage de programmation possède des règles d’écriture
+strictes (règles syntaxiques), mais permet d’avoir un résultat
+concret par un ordinateur.
+En général, on écrit un programme en utilisant un éditeur, une
+suite d’actions élémentaires en respectant ces règles syntaxiques.
+→code source
+EFREI 21-22
+Fondamentaux de l’algorithmique
+25 / 94
+Qu’est-ce que la programmation?
+Concevoir, écrire, modiﬁer et tester un programme écrit en utilisant
+un langage de programmation.
+La programmation consiste principalement en la traduction d’un
+algorithme dans un langage de programmation cible.
+Un langage de programmation possède des règles d’écriture
+strictes (règles syntaxiques), mais permet d’avoir un résultat
+concret par un ordinateur.
+En général, on écrit un programme en utilisant un éditeur, une
+suite d’actions élémentaires en respectant ces règles syntaxiques.
+→code source
+Pour certains langages de programmation, (C, C++, Java), le
+code source est ensuite traduit en langage machine par un
+compilateur.
+EFREI 21-22
+Fondamentaux de l’algorithmique
+25 / 94
+Qu’est-ce que la programmation?
+Concevoir, écrire, modiﬁer et tester un programme écrit en utilisant
+un langage de programmation.
+La programmation consiste principalement en la traduction d’un
+algorithme dans un langage de programmation cible.
+Un langage de programmation possède des règles d’écriture
+strictes (règles syntaxiques), mais permet d’avoir un résultat
+concret par un ordinateur.
+En général, on écrit un programme en utilisant un éditeur, une
+suite d’actions élémentaires en respectant ces règles syntaxiques.
+→code source
+Pour certains langages de programmation, (C, C++, Java), le
+code source est ensuite traduit en langage machine par un
+compilateur.
+Le compilateur transforme le code source en un ﬁchier
+exécutable.
+EFREI 21-22
+Fondamentaux de l’algorithmique
+25 / 94
+Qu’est-ce que la programmation?
+Connaitre les règles syntaxiques du langage cible est
+essentiel pour écrire le code source (se référer à la
+documentation technique en ligne).
+EFREI 21-22
+Fondamentaux de l’algorithmique
+26 / 94
+Qu’est-ce que la programmation?
+Connaitre les règles syntaxiques du langage cible est
+essentiel pour écrire le code source (se référer à la
+documentation technique en ligne).
+Cette documentation n’aide pas à trouver la solution à
+un problème (ça c’est un problème algorithmique).
+Faites le quand vous voulez traduire un algorithme en
+un programme
+EFREI 21-22
+Fondamentaux de l’algorithmique
+26 / 94
+Outline
+1
+Introduction
+Qu’est-ce qu’un algorithme?
+Qu’est-ce que la programmation?
+2
+Structure générale d’un algorithme
+3
+Variables
+Déclaration d’une variable
+Types des variables
+4
+Instructions
+Instruction d’aﬀectation
+Instructions d’entrée/sortie
+Instructions de test
+Les boucles
+EFREI 21-22
+Fondamentaux de l’algorithmique
+27 / 94
+Structure générale d’un algorithme
+Algorithme : Alg. Structure
+VAR : déclarer les variable (objets) utilisées
+Début
+instruction1
+instruction2
+.
+.
+.
+instructionn
+Fin
+EFREI 21-22
+Fondamentaux de l’algorithmique
+28 / 94
+Structure générale d’un algorithme
+Algorithme : Alg. Structure
+VAR : déclarer les variable (objets) utilisées
+Début
+instruction1
+instruction2
+.
+.
+.
+instructionn
+Fin
+Il ne faut jamais utiliser un variable non déclarée
+EFREI 21-22
+Fondamentaux de l’algorithmique
+28 / 94
+Outline
+1
+Introduction
+Qu’est-ce qu’un algorithme?
+Qu’est-ce que la programmation?
+2
+Structure générale d’un algorithme
+3
+Variables
+Déclaration d’une variable
+Types des variables
+4
+Instructions
+Instruction d’aﬀectation
+Instructions d’entrée/sortie
+Instructions de test
+Les boucles
+EFREI 21-22
+Fondamentaux de l’algorithmique
+29 / 94
+Variables
+Dans un programme, nous aurons en permanence besoin de
+sauvegarder temporairement des valeurs. Ces valeurs, peuvent
+être des données sur disque dur, données par l’utilisateur (saisie
+au clavier), ... Ca peut aussi être un résultat intermédiaire ou
+ﬁnal obtenus par le programme. Ces données peuvent avoir des
+types variés (nombres, text, etc).
+Une variable peut être considérée comme une boite avec label
+unique (un nom). Pour accéder au contenu de la boite,
+l’ordinateur utilise le label de la variable.
+Dès qu’on a besoin de sauvegarder une valeur, on utilise une variable
+EFREI 21-22
+Fondamentaux de l’algorithmique
+30 / 94
+Plan
+3
+Variables
+Déclaration d’une variable
+Types des variables
+EFREI 21-22
+Fondamentaux de l’algorithmique
+31 / 94
+Déclaration d’une variable
+La première chose à faire avant d’utiliser une variable est de
+créer une boite et lui associer un label.
+EFREI 21-22
+Fondamentaux de l’algorithmique
+32 / 94
+Déclaration d’une variable
+La première chose à faire avant d’utiliser une variable est de
+créer une boite et lui associer un label.
+Le nom de la variable (le label de la boite) obéit à des impératifs
+diﬀérents selon le langage de programmation choisi. Cependant,
+une règle absolue est que le nom d’une variable peut contenir
+des lettres et des chiﬀres, mais doit exclure tout caractère de
+ponctuation (spécialement les espaces). Aussi, le nom d’une
+variable doit commencer par une lettre.
+EFREI 21-22
+Fondamentaux de l’algorithmique
+32 / 94
+Déclaration d’une variable
+La première chose à faire avant d’utiliser une variable est de
+créer une boite et lui associer un label.
+Le nom de la variable (le label de la boite) obéit à des impératifs
+diﬀérents selon le langage de programmation choisi. Cependant,
+une règle absolue est que le nom d’une variable peut contenir
+des lettres et des chiﬀres, mais doit exclure tout caractère de
+ponctuation (spécialement les espaces). Aussi, le nom d’une
+variable doit commencer par une lettre.
+Recommendations:
+simples/noms courts
+noms signiﬁcatifs (renseigne sur l’utilité de la variable dans
+l’algorithme/programme)
+EFREI 21-22
+Fondamentaux de l’algorithmique
+32 / 94
+Déclaration d’une variable
+La première chose à faire avant d’utiliser une variable est de
+créer une boite et lui associer un label.
+Le nom de la variable (le label de la boite) obéit à des impératifs
+diﬀérents selon le langage de programmation choisi. Cependant,
+une règle absolue est que le nom d’une variable peut contenir
+des lettres et des chiﬀres, mais doit exclure tout caractère de
+ponctuation (spécialement les espaces). Aussi, le nom d’une
+variable doit commencer par une lettre.
+Recommendations:
+simples/noms courts
+noms signiﬁcatifs (renseigne sur l’utilité de la variable dans
+l’algorithme/programme)
+Quand on déclare une variable, il ne suﬃt pas de créer la boite
+(réserver un emplacement mémoire); nous devons préciser ce que
+nous comptons y mettre (type). Ceci déterminera la taille
+nécéssaire de la boite (la taille de l’emplacement mémoire
+correspondant) et les opérations autorisées.
+EFREI 21-22
+Fondamentaux de l’algorithmique
+32 / 94
+Plan
+3
+Variables
+Déclaration d’une variable
+Types des variables
+EFREI 21-22
+Fondamentaux de l’algorithmique
+33 / 94
+Types des variables
+Entier, réel
++, −, ∗, /
+% (modulo, seulement pour les entiers)
+caractère
+peut être manipulé comme un entier (code ASCII)
+chaîne de caractères
+concat, longueur, sous-chaine, ...
+booléen
+OU, ET, NON
+...
+EFREI 21-22
+Fondamentaux de l’algorithmique
+34 / 94
+Outline
+1
+Introduction
+Qu’est-ce qu’un algorithme?
+Qu’est-ce que la programmation?
+2
+Structure générale d’un algorithme
+3
+Variables
+Déclaration d’une variable
+Types des variables
+4
+Instructions
+Instruction d’aﬀectation
+Instructions d’entrée/sortie
+Instructions de test
+Les boucles
+EFREI 21-22
+Fondamentaux de l’algorithmique
+35 / 94
+Plan
+4
+Instructions
+Instruction d’aﬀectation
+Instructions d’entrée/sortie
+Instructions de test
+Les boucles
+EFREI 21-22
+Fondamentaux de l’algorithmique
+36 / 94
+Instructions
+Instruction d’aﬀectation : ←
+Syntaxe: var ←expression
+Exemples:
+X ←3*5+12*40
+X ←X+2
+X ←2*Y+3*Z
+C ←’Z’
+...
+EFREI 21-22
+Fondamentaux de l’algorithmique
+37 / 94
+Plan
+4
+Instructions
+Instruction d’aﬀectation
+Instructions d’entrée/sortie
+Instructions de test
+Les boucles
+EFREI 21-22
+Fondamentaux de l’algorithmique
+38 / 94
+Instructions d’entrée/sortie
+Algorithme :
+sans I/O
+VAR :
+X: entier
+Début
+X ←15 ∗15
+Fin
+EFREI 21-22
+Fondamentaux de l’algorithmique
+39 / 94
+Instructions d’entrée/sortie
+Algorithme :
+sans I/O
+VAR :
+X: entier
+Début
+X ←15 ∗15
+Fin
+Inutilisable pour une autre valeur que
+15!!
+Le résultat n’est pas visible à
+l’utilisateur !!
+EFREI 21-22
+Fondamentaux de l’algorithmique
+39 / 94
+Instructions d’entrée/sortie
+Algorithme :
+sans I/O
+VAR :
+X: entier
+Début
+X ←15 ∗15
+Fin
+Inutilisable pour une autre valeur que
+15!!
+Le résultat n’est pas visible à
+l’utilisateur !!
+Lire une valeur saisie au clavier
+Syntaxe : Saisir (Variable)
+Ecrire la valeur d’une expression à l’écran
+Syntaxe: Afficher (Expression1, Expression2, . . . , Expressionn)
+Exemples
+Afficher ("Hello Word")
+Afficher ("Please enter your name")
+Afficher ("The solution of your equation is", S)
+...
+EFREI 21-22
+Fondamentaux de l’algorithmique
+39 / 94
+Instructions d’entrée/sortie
+Algorithme : Square
+VAR :
+X : entier, Res : entier
+Début
+Afficher("Introduisez une valeur entière");
+Saisir (X)
+Res ←X ∗X
+Afficher ("le carré de ",X, " est ", Res)
+Fin
+EFREI 21-22
+Fondamentaux de l’algorithmique
+40 / 94
+Instructions d’entrée/sortie
+Algorithme : Square2
+VAR :
+X : entier
+Début
+Afficher("Introduisez une valeur entière");
+Saisir (X)
+Afficher ("le carré de ",X, " est ", X*X)
+Fin
+EFREI 21-22
+Fondamentaux de l’algorithmique
+41 / 94
+Exercice
+Quelle est la sortie de l’algorithme suivant?
+Algorithme : test
+VAR :
+a : entier, x : réel, c : caractère
+Début
+a ←−7
+x ←1.5
+c ←′?′
+Afficher (a)
+Afficher ("a+c")
+Afficher (x)
+Afficher ("a*x")
+Afficher (x*a)
+Fin
+EFREI 21-22
+Fondamentaux de l’algorithmique
+42 / 94
+Plan
+4
+Instructions
+Instruction d’aﬀectation
+Instructions d’entrée/sortie
+Instructions de test
+Les boucles
+EFREI 21-22
+Fondamentaux de l’algorithmique
+43 / 94
+Instructions de test
+Instruction conditionnelle
+EFREI 21-22
+Fondamentaux de l’algorithmique
+44 / 94
+Instructions de test
+Instruction conditionnelle
+Syntaxe :
+Si(expression booléenne) Alors
+bloc d’instructions
+Fin Si
+EFREI 21-22
+Fondamentaux de l’algorithmique
+44 / 94
+Instructions de test
+Instruction conditionnelle
+Syntaxe :
+Si(expression booléenne) Alors
+bloc d’instructions
+Fin Si
+Exemple:
+Si(x<0) Alors
+x ←−x
+Fin Si
+EFREI 21-22
+Fondamentaux de l’algorithmique
+44 / 94
+Instructions de test
+Instruction alternative
+EFREI 21-22
+Fondamentaux de l’algorithmique
+45 / 94
+Instructions de test
+Instruction alternative
+Syntaxe :
+Si(expression booléenne) Alors
+bloc1
+Sinon
+bloc2
+Fin Si
+EFREI 21-22
+Fondamentaux de l’algorithmique
+45 / 94
+Instructions de test
+Instruction alternative
+Syntaxe :
+Si(expression booléenne) Alors
+bloc1
+Sinon
+bloc2
+Fin Si
+Exemple :
+Si(delta<0) Alors
+Aﬃcher("Aucune solution réelle")
+Sinon
+Aﬃcher ("il existe une ou deux solutions")
+Fin Si
+EFREI 21-22
+Fondamentaux de l’algorithmique
+45 / 94
+Instructions de test imbriquées
+...
+Si(x=1) Alors
+...
+Sinon
+Si(x=2) Alors
+...
+Sinon
+Si(x=3) Alors
+...
+Sinon
+...
+Fin Si
+Fin Si
+Fin Si
+...
+EFREI 21-22
+Fondamentaux de l’algorithmique
+46 / 94
+Instructions de test imbriquées
+...
+Si(x=1) Alors
+...
+Sinon
+Si(x=2) Alors
+...
+Sinon
+Si(x=3) Alors
+...
+Sinon
+...
+Fin Si
+Fin Si
+Fin Si
+...
+Trop long
+Diﬃcile à lire/comprendre
+EFREI 21-22
+Fondamentaux de l’algorithmique
+46 / 94
+Instructions de test imbriquées
+...
+Si(x=1) Alors
+...
+Sinon
+Si(x=2) Alors
+...
+Sinon
+Si(x=3) Alors
+...
+Sinon
+...
+Fin Si
+Fin Si
+Fin Si
+...
+Trop long
+Diﬃcile à lire/comprendre
+Instruction Selon
+Syntaxe :
+Selon(Expression entière)
+cas valeur1 : ...
+cas valeur2 : ...
+...
+cas valeurn : ...
+Sinon : ...
+Fin Selon
+EFREI 21-22
+Fondamentaux de l’algorithmique
+46 / 94
+Instruction Selon
+Instructions de test imbriquées
+...
+Si(x=1) Alors
+...
+Sinon
+Si(x=2) Alors
+...
+Sinon
+Si(x=3) Alors
+...
+Sinon
+...
+Fin Si
+Fin Si
+Fin Si
+...
+EFREI 21-22
+Fondamentaux de l’algorithmique
+47 / 94
+Instruction Selon
+Instructions de test imbriquées
+...
+Si(x=1) Alors
+...
+Sinon
+Si(x=2) Alors
+...
+Sinon
+Si(x=3) Alors
+...
+Sinon
+...
+Fin Si
+Fin Si
+Fin Si
+...
+Selon ...
+1:
+Selon(x)
+2:
+cas 1 : ...
+3:
+cas 2 : ...
+4:
+cas 3 : ...
+5:
+Sinon : ...
+6:
+Fin Selon
+...
+EFREI 21-22
+Fondamentaux de l’algorithmique
+47 / 94
+Instruction Selon : exemple
+Ecrire un algorithme permettant, au choix de l’utilisateur, de
+réaliser l’addition, la soustraction, la multiplication ou la division
+de deux nombres entiers saisis au clavier.
+EFREI 21-22
+Fondamentaux de l’algorithmique
+48 / 94
+Instruction Selon : exemple
+Ecrire un algorithme permettant, au choix de l’utilisateur, de
+réaliser l’addition, la soustraction, la multiplication ou la division
+de deux nombres entiers saisis au clavier.
+Algorithme : ArithOp
+VAR :
+x, y, op: entier
+Début
+Afficher ("Choisissez une
+opération")
+Afficher ("Entrez 1 pour l’addition")
+Afficher ("Entrez 2 pour la
+soustraction")
+Afficher ("Entrez 3 pour la
+multiplication")
+Afficher ("Entrez 4 pour la division")
+Saisir (op)
+Afficher ("Entrez les opérandes")
+Saisir (x,y)
+Selon (op)
+cas 1 : Afficher
+(x,"+",y,"=",x+Y)
+cas 2 : Afficher (x,"-",y,"=",x-Y)
+cas 3 : Afficher (x,"*",y,"=",x*Y)
+cas 4 : Si (y̸=0) Alors
+Afficher
+(x,"/",y,"=",x/y)
+Sinon
+Afficher ("Division par
+zéro impossible")
+Fin Si
+Sinon: Afficher ("Choix de
+l’opération erroné")
+Fin Selon
+Fin
+EFREI 21-22
+Fondamentaux de l’algorithmique
+48 / 94
+Plan
+4
+Instructions
+Instruction d’aﬀectation
+Instructions d’entrée/sortie
+Instructions de test
+Les boucles
+EFREI 21-22
+Fondamentaux de l’algorithmique
+49 / 94
+Les boucles
+On utilise les boucles pour répéter l’exécution d’un bloc
+d’instructions.
+EFREI 21-22
+Fondamentaux de l’algorithmique
+50 / 94
+Les boucles
+On utilise les boucles pour répéter l’exécution d’un bloc
+d’instructions.
+Avoir la possibilité de répéter un bloc d’instructions est l’une des
+tâche les plus utiles en algorithmique/programmation.
+EFREI 21-22
+Fondamentaux de l’algorithmique
+50 / 94
+Les boucles
+On utilise les boucles pour répéter l’exécution d’un bloc
+d’instructions.
+Avoir la possibilité de répéter un bloc d’instructions est l’une des
+tâche les plus utiles en algorithmique/programmation.
+Une boucle permet d’écrire un code concis qui produit un
+résultat conséquent par simple répétition.
+EFREI 21-22
+Fondamentaux de l’algorithmique
+50 / 94
+Les boucles
+On utilise les boucles pour répéter l’exécution d’un bloc
+d’instructions.
+Avoir la possibilité de répéter un bloc d’instructions est l’une des
+tâche les plus utiles en algorithmique/programmation.
+Une boucle permet d’écrire un code concis qui produit un
+résultat conséquent par simple répétition.
+Trois types de boucles
+Tant Que
+Répéter ...
+Tant Que
+Pour
+EFREI 21-22
+Fondamentaux de l’algorithmique
+50 / 94
+Instruction Tant Que
+Syntaxe :
+Tant Que (expression booléenne) Faire
+Bloc d’instructions
+Fin Tant Que
+EFREI 21-22
+Fondamentaux de l’algorithmique
+51 / 94
+Instruction Tant Que
+Syntaxe :
+Tant Que (expression booléenne) Faire
+Bloc d’instructions
+Fin Tant Que
+Exemple
+somme←0
+cpt←1
+Tant que(cpt≤100) Faire
+somme←somme+cpt
+cpt←cpt+1
+Fin Tant Que
+EFREI 21-22
+Fondamentaux de l’algorithmique
+51 / 94
+Instruction Répéter ... Tant Que
+Syntaxe :
+Répéter
+Bloc d’instructions
+Tant Que(expression booléenne)
+EFREI 21-22
+Fondamentaux de l’algorithmique
+52 / 94
+Instruction Répéter ... Tant Que
+Syntaxe :
+Répéter
+Bloc d’instructions
+Tant Que(expression booléenne)
+Exemple
+Répéter
+Afficher("Choisissez une operation")
+Afficher("Entrez 1 pour l’addition")
+Afficher("Entrez 2 pour la soustraction")
+Afficher("Entrez 3 pour la multiplication")
+Afficher("Entrez 4 pour la division")
+Saisir (op)
+Tant Que(op<1 OU op>4)
+EFREI 21-22
+Fondamentaux de l’algorithmique
+52 / 94
+Instruction Pour
+Syntaxe :
+Pour cpt←debut A fin [Pas] Faire
+Bloc d’instructions
+Fin Pour
+EFREI 21-22
+Fondamentaux de l’algorithmique
+53 / 94
+Instruction Pour
+Syntaxe :
+Pour cpt←debut A fin [Pas] Faire
+Bloc d’instructions
+Fin Pour
+Exemple
+sum←0
+Pour cpt←1 A 100 Faire
+sum←sum+cpt
+Fin Pour
+EFREI 21-22
+Fondamentaux de l’algorithmique
+53 / 94
+Boucles
+Recommendations
+EFREI 21-22
+Fondamentaux de l’algorithmique
+54 / 94
+Boucles
+Recommendations
+Utiliser une boucle Pour quand le nombre d’itérations est connu
+à l’avance
+EFREI 21-22
+Fondamentaux de l’algorithmique
+54 / 94
+Boucles
+Recommendations
+Utiliser une boucle Pour quand le nombre d’itérations est connu
+à l’avance
+Utiliser une boucle Tant Que quand le nombre d’itérations n’est
+pas connu à l’avance
+EFREI 21-22
+Fondamentaux de l’algorithmique
+54 / 94
+Boucles
+Recommendations
+Utiliser une boucle Pour quand le nombre d’itérations est connu
+à l’avance
+Utiliser une boucle Tant Que quand le nombre d’itérations n’est
+pas connu à l’avance
+Utiliser une boucle Répéter ...
+Tant Que quand le nombre
+d’itérations est toujours supérieur ou égal à 1.
+EFREI 21-22
+Fondamentaux de l’algorithmique
+54 / 94
+
