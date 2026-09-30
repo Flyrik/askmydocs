@@ -1,0 +1,14 @@
+# Environnement Python
+.venv/
+__pycache__/
+*.pyc
+
+# Secrets
+.env
+
+# Données générées
+chroma_db/
+
+# Éditeur / OS
+.vscode/
+.DS_Store
