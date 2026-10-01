@@ -1,0 +1,6 @@
+
+-Use LangChain 
+
+Advanced feature : 
+
+-Vision par ordi ou quoi pr extraires les images?
