@@ -33,7 +33,10 @@ def extract_all(folder):
 
 
 if __name__ == "__main__":
-    print(len(extract_all("data/*.pdf")))
+    
+    pdfs_extrait_all_pagess= extract_all("data/*.pdf")
+    print(len(pdfs_extrait_all_pagess))
+    print(pdfs_extrait_all_pagess[0]["text"])
     
     # for texte, num in pages[1:12]:      # pages 2 à 7 du PDF
     #     print(f"===== PAGE {num} =====")
