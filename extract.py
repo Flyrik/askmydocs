@@ -8,8 +8,9 @@ import glob
 def extract_pdf(path):
 
     list_text = []
+    #Permet de ouvrir le fichier PDF avec pymupdf, et de récupérer le texte de chaque pageensuite stocké dans une liste de dictionnaires, où chaque dictionnaire contient le texte de la page, le numéro de la page et le nom du fichier PDF.
     doc = pymupdf.open(path)
-    # out = open("output.txt", "wb") # create a text output
+    
     for page in doc: # iterate the document pages
         text = page.get_text()
         page_num = page.number + 1
@@ -21,8 +22,9 @@ def extract_pdf(path):
 
 def extract_all(folder):
     resultat = []
+    #Glob permet de récupérer tous les nom des fichiers PDF dans le dossier spécifié par le paramètre folder.
     allpdf = glob.glob(folder)
-    print(allpdf)
+    # print(allpdf)
     for pdf in allpdf:
         resultat.extend(extract_pdf(pdf))
     
@@ -34,10 +36,11 @@ def extract_all(folder):
 
 if __name__ == "__main__":
     
-    pdfs_extrait_all_pagess= extract_all("data/*.pdf")
-    print(len(pdfs_extrait_all_pagess))
-    print(pdfs_extrait_all_pagess[0]["text"])
-    
-    # for texte, num in pages[1:12]:      # pages 2 à 7 du PDF
-    #     print(f"===== PAGE {num} =====")
-    #     print(texte)
+    pdfs_extrait_all_pages = extract_all("data/*.pdf")
+    print((pdfs_extrait_all_pages[0]))
+    print(pdfs_extrait_all_pages[0]["text"])
+    #Affiche le texte de la première page de chaque fichier PDF extrait.
+    for page in pdfs_extrait_all_pages:
+        if page["page"] == 1:
+            
+            print(page["text"])
