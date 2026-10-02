@@ -1,7 +1,7 @@
 import pymupdf
 import pathlib 
 import glob
-
+from clean import lagature_cleaning
 
 
 
@@ -10,12 +10,14 @@ def extract_pdf(path):
     list_text = []
     #Permet de ouvrir le fichier PDF avec pymupdf, et de récupérer le texte de chaque pageensuite stocké dans une liste de dictionnaires, où chaque dictionnaire contient le texte de la page, le numéro de la page et le nom du fichier PDF.
     doc = pymupdf.open(path)
-    
+    #Permet de récupérer le nom du fichier PDF à partir du chemin d'accès complet.(Enleve le "\data...")
+    path_name = pathlib.Path(path).name
     for page in doc: # iterate the document pages
         text = page.get_text()
+        text = lagature_cleaning(text)
         page_num = page.number + 1
 
-        list_text.append({ "text": text, "page": page_num , "path": pathlib.Path(path).name})
+        list_text.append({ "text": text, "page": page_num , "path": path_name })
     # out.close()
     doc.close()
     return list_text
@@ -26,8 +28,7 @@ def extract_all(folder):
     allpdf = glob.glob(folder)
     # print(allpdf)
     for pdf in allpdf:
-        resultat.extend(extract_pdf(pdf))
-    
+        resultat.extend(extract_pdf(pdf))   
     return resultat
 
 
