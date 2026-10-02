@@ -11,7 +11,8 @@ def line_cleaning(text):
     
     lines = text.splitlines()
     return lines
-    
+
+#Donne le nombre de repétitions de chaque ligne dans le PDF.
 def check_repetion(pages):
     dico = {}
     for page in pages:
@@ -24,6 +25,7 @@ def check_repetion(pages):
                 dico[ligne] = 1
     return dico
 
+#Enleve les pieds de page du PDF, en se basant sur le nombre de répétitions de chaque ligne dans le PDF.
 def remove_footer(pages):
     # Le seuil : une ligne présente sur plus de la moitié des pages = pied de page
     seuil = len(pages) / 2

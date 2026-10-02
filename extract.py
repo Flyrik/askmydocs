@@ -31,10 +31,10 @@ def extract_all(folder):
     # print(allpdf)
     for pdf in allpdf:
         page = extract_pdf(pdf)
-        count = check_repetion(page)
+        page = remove_footer(page)
         resultat.extend(page)
-        remove_footer(page)
-        # print(count)
+        
+        
     return resultat
 
 
@@ -44,5 +44,5 @@ def extract_all(folder):
 if __name__ == "__main__":
     
     pdfs_extrait_all_pages = extract_all("data/*.pdf")
-    print((pdfs_extrait_all_pages[0]))
- 
+    print((pdfs_extrait_all_pages[6]))
+    
