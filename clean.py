@@ -25,4 +25,25 @@ def check_repetion(pages):
     return dico
 
 def remove_footer(pages):
-    seuil = len(pages)/2
+    # Le seuil : une ligne présente sur plus de la moitié des pages = pied de page
+    seuil = len(pages) / 2
+
+    # Pour chaque ligne du PDF, sur combien de pages elle apparaît
+    repetition = check_repetion(pages)
+
+    # 1. Construire la liste des lignes à supprimer
+    a_supprimer = []
+    for ligne, count in repetition.items():   # chaque ligne et son nombre d'apparitions
+        if count > seuil:                     # elle se répète trop → pied de page
+            a_supprimer.append(ligne)
+
+    # 2. Nettoyer chaque page
+    for page in pages:
+        lignes = line_cleaning(page["text"])  # découpe le texte de la page en lignes
+        lignes_gardees = []
+        for ligne in lignes:
+            if ligne not in a_supprimer:      # pas un pied de page → on la garde
+                lignes_gardees.append(ligne)
+        page["text"] = "\n".join(lignes_gardees)  # recolle les lignes gardées en un seul texte
+
+    return pages

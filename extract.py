@@ -1,7 +1,7 @@
 import pymupdf
 import pathlib 
 import glob
-from clean import lagature_cleaning, line_cleaning, check_repetion
+from clean import lagature_cleaning, line_cleaning, check_repetion, remove_footer
 
 
 
@@ -16,8 +16,7 @@ def extract_pdf(path):
         text = page.get_text()
         text = lagature_cleaning(text)
         page_num = page.number + 1
-        
-        
+
         list_text.append({ "text": text, "page": page_num , "path": path_name })
         
 
@@ -34,7 +33,8 @@ def extract_all(folder):
         page = extract_pdf(pdf)
         count = check_repetion(page)
         resultat.extend(page)
-        print(count)
+        remove_footer(page)
+        # print(count)
     return resultat
 
 
