@@ -6,24 +6,38 @@ def lagature_cleaning(text):
 
     return text
 
-#Permets de transformer chaque page en une liste de plusieurs lignes
+#Permets de transformer chaque page en une liste de plusieurs lignes Et de supprimer les lignes vides.
 def line_cleaning(text):
-    
+    list_gard = []
     lines = text.splitlines()
-    return lines
+
+    for line in lines:
+        line = line.strip()
+        if line == "":  
+            continue
+        else :
+            list_gard.append(line)
+
+
+
+    return list_gard
 
 #Donne le nombre de repétitions de chaque ligne dans le PDF.
 def check_repetion(pages):
     dico = {}
     for page in pages:
         lignes = line_cleaning(page["text"])
-        
-        for ligne in lignes:
+        set_lignes = set(lignes)  
+        for ligne in set_lignes:
             if ligne in dico:
                 dico[ligne] += 1
             else:
                 dico[ligne] = 1
     return dico
+
+
+
+
 
 #Enleve les pieds de page du PDF, en se basant sur le nombre de répétitions de chaque ligne dans le PDF.
 def remove_footer(pages):
@@ -44,7 +58,7 @@ def remove_footer(pages):
         lignes = line_cleaning(page["text"])  # découpe le texte de la page en lignes
         lignes_gardees = []
         for ligne in lignes:
-            if ligne not in a_supprimer:      # pas un pied de page → on la garde
+            if ligne not in a_supprimer :      # pas un pied de page → on la garde
                 lignes_gardees.append(ligne)
         page["text"] = "\n".join(lignes_gardees)  # recolle les lignes gardées en un seul texte
 
