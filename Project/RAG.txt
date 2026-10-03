@@ -1,15 +1,20 @@
-STEP 1 NETTOYAGE :
+ETAPE 1 : EXTRACTION ET NETTOYAGE
 
--Ligature ( fi...)
--lignes vide et les espaces
--les numéros de page, grâce au \d+
--Elements répété a plus de 50 du seuille ( les pieds de page, de façon générique)
+Etape                                              Fonction               Fichier
+-------------------------------------------------  ---------------------  ----------
+Extraction du texte + metadonnees page et path     extract_pdf            extract.py
+Traitement de tous les PDF du dossier              extract_all            extract.py
+Ligatures ("fi")                                   lagature_cleaning      clean.py
+Lignes vides et espaces en trop                    line_cleaning          clean.py
+Neutralisation des numeros (\d+ -> #)              line_without_number    clean.py
+Comptage des lignes repetees (1 fois par page)     check_repetion         clean.py
+Pieds de page (> 50 %) + protection petits PDF     remove_footer          clean.py
+Lignes d'une page en set, pour comparer            page_lines_set         clean.py
+Slides animees                                     remove_page_animated   clean.py
+Pages dupliquees                                   remove_doublon         clean.py
 
 
-
-
-
-
+ETAPE 2 : CHUNCKING
 
 
 INFORMATIONS :
