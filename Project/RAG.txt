@@ -1,8 +1,10 @@
 STEP 1 NETTOYAGE :
 
-Ligature
-Numero de page
-Elements répété.
+-Ligature
+-lignes vide
+-Numero de page
+-Elements répété a plus de 50 du seuille
+
 
 
 

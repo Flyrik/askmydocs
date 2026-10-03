@@ -1,4 +1,6 @@
+
 import unicodedata
+import re
 
 #Enleve les ligatures :ex: "ﬁ" devient "fi", "ﬂ" devient "fl", etc.
 def lagature_cleaning(text):
@@ -22,19 +24,41 @@ def line_cleaning(text):
 
     return list_gard
 
-#Donne le nombre de repétitions de chaque ligne dans le PDF.
+
+
+#Transforme les chiffres en # d'une ligne, pour regler les problemes comme 2/90, 3/90 = #/# , #/# ... ( puis on fait le set seulement apres pour en compter que 1 par page)
+def line_without_number(ligne):
+    ligne = re.sub(r'\d', '#', ligne)
+    return ligne
+
+
+#Donne le nombre de repétitions de chaque ligne dans le PDF. (enleve les doublons pour qu'on compte que 1 par page)
 def check_repetion(pages):
     dico = {}
+   
     for page in pages:
         lignes = line_cleaning(page["text"])
-        set_lignes = set(lignes)  
+        lignes_with_hide_number = []
+        #Transforme les chiffres en #, pour regler les problemes comme 2/90, 3/90 = #/# , #/# ... ( puis on fait le set seulement apres pour en compter que 1 par page)
+        for ligne in lignes:
+            ligne = line_without_number(ligne)
+            lignes_with_hide_number.append(ligne)
+
+        set_lignes = set(lignes_with_hide_number)  
+        
+
+
+
         for ligne in set_lignes:
+            
             if ligne in dico:
                 dico[ligne] += 1
             else:
                 dico[ligne] = 1
-    return dico
 
+        
+        
+    return dico
 
 
 
@@ -46,7 +70,7 @@ def remove_footer(pages):
 
     # Pour chaque ligne du PDF, sur combien de pages elle apparaît
     repetition = check_repetion(pages)
-
+    print(check_repetion(pages))
     # 1. Construire la liste des lignes à supprimer
     a_supprimer = []
     for ligne, count in repetition.items():   # chaque ligne et son nombre d'apparitions
@@ -58,8 +82,12 @@ def remove_footer(pages):
         lignes = line_cleaning(page["text"])  # découpe le texte de la page en lignes
         lignes_gardees = []
         for ligne in lignes:
-            if ligne not in a_supprimer :      # pas un pied de page → on la garde
+            # on transforme les chiffres en # pour comparer car "a_supprimer contient des lignes avec # à la place des chiffres"
+            version_comparative =  line_without_number(ligne)
+            if version_comparative not in a_supprimer :     
+                
                 lignes_gardees.append(ligne)
         page["text"] = "\n".join(lignes_gardees)  # recolle les lignes gardées en un seul texte
 
     return pages
+
