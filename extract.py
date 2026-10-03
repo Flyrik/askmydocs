@@ -37,12 +37,17 @@ def extract_all(folder):
         
         page = remove_page_animated(page)
         page = remove_doublon(page)
+        print("Total characters:", calculate_total_characters(page))
         resultat.extend(page)
         
         
     return resultat
 
-
+def calculate_total_characters(pages):
+    total_characters = 0
+    for page in pages:
+        total_characters += len(page["text"])
+    return total_characters
 
 if __name__ == "__main__":
     
