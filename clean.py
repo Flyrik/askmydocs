@@ -28,7 +28,7 @@ def line_cleaning(text):
 
 #Transforme les chiffres en # d'une ligne, pour regler les problemes comme 2/90, 3/90 = #/# , #/# ... ( puis on fait le set seulement apres pour en compter que 1 par page)
 def line_without_number(ligne):
-    ligne = re.sub(r'\d', '#', ligne)
+    ligne = re.sub(r'\d+', '#', ligne) #le d+ permets de tranformer tous les chiffres / nombres en # : 2/94 = #/# alors que avec juste d : #/##
     return ligne
 
 
@@ -70,7 +70,7 @@ def remove_footer(pages):
 
     # Pour chaque ligne du PDF, sur combien de pages elle apparaît
     repetition = check_repetion(pages)
-    print(check_repetion(pages))
+    
     # 1. Construire la liste des lignes à supprimer
     a_supprimer = []
     for ligne, count in repetition.items():   # chaque ligne et son nombre d'apparitions
