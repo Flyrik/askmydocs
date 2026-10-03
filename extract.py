@@ -49,6 +49,13 @@ def calculate_total_characters(pages):
         total_characters += len(page["text"])
     return total_characters
 
+def moyenne_caracteres_par_page(pages):
+    total_characters = calculate_total_characters(pages)
+    total_pages = len(pages)
+    if total_pages == 0:
+        return 0
+    return total_characters / total_pages
+
 if __name__ == "__main__":
     
     pdfs_extrait_all_pages = extract_all("data/AlgoChap1_Sem1.pdf")
