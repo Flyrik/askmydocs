@@ -1,9 +1,9 @@
 STEP 1 NETTOYAGE :
 
--Ligature
--lignes vide
--Numero de page
--Elements répété a plus de 50 du seuille
+-Ligature ( fi...)
+-lignes vide et les espaces
+-les numéros de page, grâce au \d+
+-Elements répété a plus de 50 du seuille ( les pieds de page, de façon générique)
 
 
 

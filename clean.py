@@ -2,6 +2,8 @@
 import unicodedata
 import re
 
+
+MIN_PAGES = 3
 #Enleve les ligatures :ex: "ﬁ" devient "fi", "ﬂ" devient "fl", etc.
 def lagature_cleaning(text):
     text = unicodedata.normalize("NFKC", text)
@@ -65,19 +67,24 @@ def check_repetion(pages):
 
 #Enleve les pieds de page du PDF, en se basant sur le nombre de répétitions de chaque ligne dans le PDF.
 def remove_footer(pages):
-    # Le seuil : une ligne présente sur plus de la moitié des pages = pied de page
+    
+    
+    #Si le PDF contient moins de 3 pages, on ne supprime pas les pieds de page, car il n'y a pas assez de pages pour déterminer ce qui est un pied de page.
+    if len(pages) > MIN_PAGES:
+        return pages
+        # Le seuil : une ligne présente sur plus de la moitié des pages = pied de page
     seuil = len(pages) / 2
 
-    # Pour chaque ligne du PDF, sur combien de pages elle apparaît
+        # Pour chaque ligne du PDF, sur combien de pages elle apparaît
     repetition = check_repetion(pages)
-    
-    # 1. Construire la liste des lignes à supprimer
+        
+        # 1. Construire la liste des lignes à supprimer
     a_supprimer = []
     for ligne, count in repetition.items():   # chaque ligne et son nombre d'apparitions
         if count > seuil:                     # elle se répète trop → pied de page
             a_supprimer.append(ligne)
 
-    # 2. Nettoyer chaque page
+        # 2. Nettoyer chaque page
     for page in pages:
         lignes = line_cleaning(page["text"])  # découpe le texte de la page en lignes
         lignes_gardees = []
@@ -85,9 +92,10 @@ def remove_footer(pages):
             # on transforme les chiffres en # pour comparer car "a_supprimer contient des lignes avec # à la place des chiffres"
             version_comparative =  line_without_number(ligne)
             if version_comparative not in a_supprimer :     
-                
+                    
                 lignes_gardees.append(ligne)
         page["text"] = "\n".join(lignes_gardees)  # recolle les lignes gardées en un seul texte
 
     return pages
+    
 
