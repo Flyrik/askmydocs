@@ -88,9 +88,21 @@ def check_repetion(pages):
     return dico
 
 
+def remove_doublon(pages):
+    list_gard = []
+    
 
-
-#Enleve les pieds de page du PDF, en se basant sur le nombre de répétitions de chaque ligne dans le PDF.
+    for i in range(len(pages)):
+        est_doublon = False
+        ligne_set = page_lines_set(pages[i]["text"])
+        for j in range (i+1, len(pages)):
+            set_next = page_lines_set(pages[j]["text"])
+            if ligne_set == set_next:
+                est_doublon = True
+                break
+        if not est_doublon:
+            list_gard.append(pages[i])
+    return list_gard#Enleve les pieds de page du PDF, en se basant sur le nombre de répétitions de chaque ligne dans le PDF.
 def remove_footer(pages):
     
     

@@ -1,7 +1,7 @@
 import pymupdf
 import pathlib 
 import glob
-from clean import lagature_cleaning, line_cleaning, check_repetion, remove_footer, remove_page_animated
+from clean import lagature_cleaning, line_cleaning, check_repetion, remove_doublon, remove_footer, remove_page_animated
 
 
 
@@ -34,7 +34,9 @@ def extract_all(folder):
     for pdf in allpdf:
         page = extract_pdf(pdf)
         page = remove_footer(page)
+        
         page = remove_page_animated(page)
+        page = remove_doublon(page)
         resultat.extend(page)
         
         
