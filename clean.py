@@ -10,6 +10,31 @@ def lagature_cleaning(text):
 
     return text
 
+#Retire les pages animées, c'est à dire les pages qui sont des sous-ensembles de la page suivante. (ex: page 1 = page 2 maisl page 2 a une info de plus etc..)
+def remove_page_animated(pages):
+    list_gard = []
+    for i in range(len(pages)-1):
+        
+
+        current_lignes = page_lines_set(pages[i]["text"])
+        next_lignes = page_lines_set(pages[i+1]["text"])
+        
+        if current_lignes.issubset(next_lignes):
+            continue
+        else:
+            list_gard.append(pages[i])
+    list_gard.append(pages[-1])  # Ajoute la dernière page
+        
+    return list_gard
+
+def page_lines_set(page):
+    lignes = line_cleaning(page)   # texte → liste de lignes
+    lignes_transformees = []
+    for ligne in lignes:
+        lignes_transformees.append(line_without_number(ligne)) # transforme les chiffres en #
+    return set(lignes_transformees)  
+
+
 #Permets de transformer chaque page en une liste de plusieurs lignes Et de supprimer les lignes vides.
 def line_cleaning(text):
     list_gard = []
@@ -70,7 +95,7 @@ def remove_footer(pages):
     
     
     #Si le PDF contient moins de 3 pages, on ne supprime pas les pieds de page, car il n'y a pas assez de pages pour déterminer ce qui est un pied de page.
-    if len(pages) > MIN_PAGES:
+    if len(pages) < MIN_PAGES:
         return pages
         # Le seuil : une ligne présente sur plus de la moitié des pages = pied de page
     seuil = len(pages) / 2

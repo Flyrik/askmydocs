@@ -1,7 +1,7 @@
 import pymupdf
 import pathlib 
 import glob
-from clean import lagature_cleaning, line_cleaning, check_repetion, remove_footer
+from clean import lagature_cleaning, line_cleaning, check_repetion, remove_footer, remove_page_animated
 
 
 
@@ -24,6 +24,8 @@ def extract_pdf(path):
     doc.close()
     return list_text
 
+
+
 def extract_all(folder):
     resultat = []
     #Glob permet de récupérer tous les nom des fichiers PDF dans le dossier spécifié par le paramètre folder.
@@ -32,17 +34,17 @@ def extract_all(folder):
     for pdf in allpdf:
         page = extract_pdf(pdf)
         page = remove_footer(page)
+        page = remove_page_animated(page)
         resultat.extend(page)
         
         
     return resultat
 
 
-    
-
 
 if __name__ == "__main__":
     
-    pdfs_extrait_all_pages = extract_all("data/*.pdf")
-    print((pdfs_extrait_all_pages[6]))
+    pdfs_extrait_all_pages = extract_all("data/AlgoChap1_Sem1.pdf")
+    for i in pdfs_extrait_all_pages:
+        print(i,"\n")
     
