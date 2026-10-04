@@ -1,5 +1,6 @@
 
 import clean
+from extract import extract_all
 
 CHUNK_SIZE = 500
 def chunk_fill(pages):
@@ -13,15 +14,32 @@ def chunk_fill(pages):
         for line in ligne :
             
             if current_chunk + len(line) <= CHUNK_SIZE:
-                current_chunk += len(line)
+                current_chunk += len(line) +1  #Quand on fait le join, cela rajoute un espace entre chaque lgine qu'on join donc rajoute 1 caractère de plus à la taille du chunk.
                 chunks.append(line)
             else:
-                list_chunks.join(chunks)
+                list_chunks.append({"text": " ".join(chunks), "page": page["page"], "path": page["path"]})
                 chunks = []
-            if line == ligne[-1] :
-                list_chunks.join(chunks)
+                chunks.append(line)
+                current_chunk =len(line) +1
+        #Pour sauvegarder le dernier chunk.
+        list_chunks.append({"text": " ".join(chunks), "page": page["page"], "path": page["path"]})
 
+    for chunk in list_chunks:
+        print(len(chunk["text"]), "|", chunk["text"][:80])
+    return list_chunks
 
-
+# Ex de sortie de chunk_fill(pages) :
+# [
+#   {"text": "1. Fonctions réciproques\n1.1. Bijection\nDéfinition 1.1.1 : Soit f...",
+#    "page": 2, "path": "AnalyseChapitre 1.pdf"},
+# 
+#   {"text": "1.2. Bijection continue\nThéorème 1.2.1 : Toute fonction continue...",
+#    "page": 2, "path": "AnalyseChapitre 1.pdf"},
+# 
+#   {"text": "Théorème 1.2.2 : Dans un repère orthonormé...",
+#    "page": 2, "path": "AnalyseChapitre 1.pdf"}
+# ]
         
-    
+if __name__ == "__main__":
+    pages = extract_all("data/*.pdf")
+    chunks = chunk_fill(pages)
