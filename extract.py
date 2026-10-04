@@ -38,6 +38,8 @@ def extract_all(folder):
         page = remove_page_animated(page)
         page = remove_doublon(page)
         print("Total characters:", calculate_total_characters(page))
+        print("min_characters_by_page:", min_characters_by_page(page))
+        print("max_characters_by_page:", max_characters_by_page(page))
         resultat.extend(page)
         
         
@@ -49,12 +51,28 @@ def calculate_total_characters(pages):
         total_characters += len(page["text"])
     return total_characters
 
-def moyenne_caracteres_par_page(pages):
+#Calculate the average of characters on a pdf
+def avg_characters_by_page(pages):
     total_characters = calculate_total_characters(pages)
     total_pages = len(pages)
     if total_pages == 0:
         return 0
     return total_characters / total_pages
+
+
+
+def min_characters_by_page(pages):
+    list_min = []
+    for page in pages:
+        list_min.append(len(page["text"]))
+    return min(list_min)
+        
+        
+def max_characters_by_page(pages):
+    list_max = []
+    for page in pages:
+        list_max.append(len(page["text"]))
+    return max(list_max)
 
 if __name__ == "__main__":
     
