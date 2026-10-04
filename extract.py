@@ -37,9 +37,7 @@ def extract_all(folder):
         
         page = remove_page_animated(page)
         page = remove_doublon(page)
-        print("Total characters:", calculate_total_characters(page))
-        print("min_characters_by_page:", min_characters_by_page(page))
-        print("max_characters_by_page:", max_characters_by_page(page))
+        print(f"HEY{pdf}: min: {min_characters_by_page(page)} max: {max_characters_by_page(page)} avg: {avg_characters_by_page(page)}")
         resultat.extend(page)
         
         
@@ -61,22 +59,27 @@ def avg_characters_by_page(pages):
 
 
 
-def min_characters_by_page(pages):
-    list_min = []
+def page_sizes(pages):
+    list= []
+   
+   
     for page in pages:
-        list_min.append(len(page["text"]))
-    return min(list_min)
+        list.append(len(page["text"]))
+    
+    return list
         
         
 def max_characters_by_page(pages):
-    list_max = []
-    for page in pages:
-        list_max.append(len(page["text"]))
-    return max(list_max)
+    list = page_sizes(pages)
+    return max(list)
+
+def min_characters_by_page(pages):
+    list = page_sizes(pages)
+    return min(list)
 
 if __name__ == "__main__":
     
-    pdfs_extrait_all_pages = extract_all("data/AlgoChap1_Sem1.pdf")
+    pdfs_extrait_all_pages = extract_all("data/AnalyseChapitre 1.pdf")
     for i in pdfs_extrait_all_pages:
         print(i,"\n")
     
