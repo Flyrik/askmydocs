@@ -37,7 +37,8 @@ def extract_all(folder):
         
         page = remove_page_animated(page)
         page = remove_doublon(page)
-        print(f"HEY{pdf}: min: {min_characters_by_page(page)} max: {max_characters_by_page(page)} avg: {avg_characters_by_page(page)}")
+        
+        print(f"{pdf}: min: {min_characters_by_page(page)} max: {max_characters_by_page(page)} avg: {avg_characters_by_page(page)}")
         resultat.extend(page)
         
         
