@@ -17,15 +17,16 @@ def chunk_fill(pages):
                 current_chunk += len(line) +1  #Quand on fait le join, cela rajoute un espace entre chaque lgine qu'on join donc rajoute 1 caractère de plus à la taille du chunk.
                 chunks.append(line)
             else:
-                list_chunks.append({"text": " ".join(chunks), "page": page["page"], "path": page["path"]})
+                if chunks: #SI c'est vide, on le sauvegarde pas, ca prend de la place pour rien.
+                    list_chunks.append({"text": " ".join(chunks), "page": page["page"], "path": page["path"]})
                 chunks = []
                 chunks.append(line)
                 current_chunk =len(line) +1
         #Pour sauvegarder le dernier chunk.
-        list_chunks.append({"text": " ".join(chunks), "page": page["page"], "path": page["path"]})
+        if chunks: 
+            list_chunks.append({"text": " ".join(chunks), "page": page["page"], "path": page["path"]})
 
-    for chunk in list_chunks:
-        print(len(chunk["text"]), "|", chunk["text"][:80])
+    
     return list_chunks
 
 # Ex de sortie de chunk_fill(pages) :
