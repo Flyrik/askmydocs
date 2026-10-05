@@ -14,8 +14,24 @@ Slides animees                                     remove_page_animated   clean.
 Pages dupliquees                                   remove_doublon         clean.py
 
 
-ETAPE 2 : CHUNCKING
+ETAPE 2 : CHUNKING
 
+Etape                                              Fonction      Fichier
+-------------------------------------------------  ------------  --------
+Decoupage de chaque page en chunks de 500 car. max  chunk_fill    chunk.py
+
+Choix et details :
+- on coupe entre deux lignes, jamais au milieu d'une ligne
+- un chunk ne melange jamais deux pages (pour les citations)
+- chaque chunk garde ses metadonnees : page et path
+- l'espace ajoute par le join est compte dans la taille
+- les chunks vides ne sont jamais sauvegardes
+- resultat : 230 pages -> 358 chunks
+
+Pistes d'amelioration (a tester a l'etape evaluation) :
+- overlap entre chunks
+- filtrer les chunks trop courts (ex : page de 12 caracteres)
+- decouper par phrases les lignes de plus de 500 caracteres
 
 INFORMATIONS :
 
