@@ -33,6 +33,9 @@ Pistes d'amelioration (a tester a l'etape evaluation) :
 - filtrer les chunks trop courts (ex : page de 12 caracteres)
 - decouper par phrases les lignes de plus de 500 caracteres
 
+
+
+
 INFORMATIONS :
 
 

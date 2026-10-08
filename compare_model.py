@@ -23,7 +23,7 @@ def information_model(model_name, text):
     model = SentenceTransformer(model_name)
     print(f"Max sequence length for {model_name}: {model.max_seq_length}") #Par chunk, il regarde jusqu'à combien de token ce modele peut gérer. Si on dépasse cette limite, il va tronquer le texte et ne garder que les premiers tokens.
     tokens = model.tokenizer.tokenize(text)
-    print(len(tokens))
+    print("Nombre de tokens:", len(tokens))
     print(f"Tokens: {tokens}")
     return model
 
@@ -44,16 +44,8 @@ def compare(model_name, reference, proche, loin):
     return test1, test2
 
 
-    
-
-
-
-
-
-
-
 if __name__ == "__main__":
     pages = extract_all("data/*AlgoChap1_Sem1.pdf")
     chunks = chunk_fill(pages)
-    information_model("all-MiniLM-L6-v2", chunks[0]["text"])
+    information_model("sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2", chunks[10]["text"])
     

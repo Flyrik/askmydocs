@@ -2,7 +2,7 @@
 import clean
 from extract import extract_all
 
-CHUNK_SIZE = 500
+CHUNK_SIZE = 350
 def chunk_fill(pages):
     list_chunks = []
     chunks = []
