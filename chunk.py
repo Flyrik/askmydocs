@@ -42,5 +42,5 @@ def chunk_fill(pages):
 # ]
         
 if __name__ == "__main__":
-    pages = extract_all("data/*.pdf")
+    pages = extract_all("data/*AlgoChap1_Sem1.pdf")
     chunks = chunk_fill(pages)
