@@ -5,6 +5,7 @@ from sentence_transformers import SentenceTransformer
 
 
 def encoding_text(model_name, chunks):
+    #Créer une table/ collection
     client = chromadb.PersistentClient(path="chroma_db")
     vecteor_chunk = client.get_or_create_collection(name="vecteor_chunk")
     model = SentenceTransformer(model_name)
@@ -19,12 +20,13 @@ def encoding_text(model_name, chunks):
 #    3. passage dans le modèle → un vecteur par token
 #    4. pooling           → un seul vecteur de 384 nombres
 
-        vecteor_chunk.add(
+        vecteor_chunk.upsert(
             documents=[text],
             embeddings = chunk_embedding,
             metadatas=[{"page": chunk["page"], "path": chunk["path"]}],
             ids = [str(i)]
         )
+    print(client.list_collections()) #list les collections existantes dans la base de données
     print(vecteor_chunk.peek())    # aperçu des premiers éléments
     print(vecteor_chunk.count())   # nombre total d'éléments dans la collection
     
