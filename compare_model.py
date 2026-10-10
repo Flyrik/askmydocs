@@ -65,6 +65,6 @@ def compare_nbr_token_by_chunk(model_name, chunks):
 
 if __name__ == "__main__":
     pages = extract_all("data/*.pdf")
-    chunks = chunk_fill(pages)
+    chunks = chunk_fill(pages, SentenceTransformer("sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"))
     # information_model("sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2", chunks[10]["text"])
     compare_nbr_token_by_chunk("sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2", chunks)

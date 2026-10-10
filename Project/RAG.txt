@@ -20,18 +20,41 @@ Etape                                              Fonction      Fichier
 -------------------------------------------------  ------------  --------
 Decoupage de chaque page en chunks de 500 car. max  chunk_fill    chunk.py
 
+
+Evolution de la taille des chunks :
+- V1 : 500 caracteres max
+  -> probleme : le modele d'embedding choisi
+     (paraphrase-multilingual-MiniLM-L12-v2) ne lit que 128 tokens.
+     Un chunk de 500 caracteres faisait 155 tokens -> fin du texte ignoree
+     sans aucun message d'erreur.
+- V2 : 350 caracteres max (calcul : ~3 caracteres par token mesure en
+  francais, 350 / 3 = ~116 tokens)
+  -> probleme : ce n'est qu'une moyenne. Max mesure sur tous les chunks :
+     242 tokens (chunks d'analyse pleins de symboles).
+- V3 (actuelle) : 126 tokens max, comptes directement avec le tokenizer
+  du modele (128 - 2 tokens speciaux de debut et fin)
+  -> max mesure : 121 tokens, plus aucun chunk tronque.
+  Lecon : mesurer la taille dans la meme unite que la limite.
+
 Choix et details :
 - on coupe entre deux lignes, jamais au milieu d'une ligne
 - un chunk ne melange jamais deux pages (pour les citations)
 - chaque chunk garde ses metadonnees : page et path
-- l'espace ajoute par le join est compte dans la taille
+- le separateur du join est compte dans la taille (+1 par ligne)
 - les chunks vides ne sont jamais sauvegardes
-- resultat : 230 pages -> 358 chunks
+- le tokenizer est passe en parametre : meme modele pour le decoupage
+  et l'embedding, charge une seule fois
+- resultat : 230 pages -> 431 chunks
+
+Limite connue :
+- une ligne seule de plus de 126 tokens donnerait un chunk tronque
+  (n'arrive pas dans les PDF actuels)
 
 Pistes d'amelioration (a tester a l'etape evaluation) :
 - overlap entre chunks
-- filtrer les chunks trop courts (ex : page de 12 caracteres)
-- decouper par phrases les lignes de plus de 500 caracteres
+- filtrer les chunks trop courts (min mesure : 3 tokens)
+- comparer avec un modele a plus grande limite (ex : multilingual-e5,
+  bge-m3) pour garder des chunks plus longs
 
 
 
