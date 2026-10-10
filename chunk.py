@@ -1,10 +1,11 @@
 
 import clean
 from extract import extract_all
+from sentence_transformers import SentenceTransformer
 
 CHUNK_SIZE = 350 
 #350 ÷ 3 ≈ 116 tokens. donc good car notre model peut gérer 128 tokens max. Donc on est en dessous de la limite. On peut donc faire des chunks de 350 caractères max.
-def chunk_fill(pages):
+def chunk_fill(pages,model):
     list_chunks = []
     chunks = []
     current_chunk = 0
