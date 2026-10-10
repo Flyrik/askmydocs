@@ -13,7 +13,7 @@ def main():
     chunks = chunk_fill(pages,model)     
     # print(f"Nombre de chunks générés: {len(chunks)}")       # étape 2
     # compare_nbr_token_by_chunk("sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2", chunks)
-    print("Embedding des chunks...")
+    
     encoding_text("sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2", chunks)
 
    

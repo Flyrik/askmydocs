@@ -5,9 +5,7 @@ from sentence_transformers import SentenceTransformer
 from chunk import chunk_fill
 
 from extract import extract_all
-import chromadb
 
-client = chromadb.PersistentClient(path="chroma_db")
 
 
 reference = ["Le chat est assis sur le tapis."]
