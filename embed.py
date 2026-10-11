@@ -4,7 +4,7 @@ from chromadb.errors import NotFoundError
 
 
 
-
+#Enconde les chunks en vecteurs et les stocke dans une collection ChromaDB. Chaque chunk est associé à son texte, son embedding, et des métadonnées (page et chemin du fichier).
 def encoding_text(model, chunks):
     #Créer une table/ collection
     client = chromadb.PersistentClient(path="chroma_db")

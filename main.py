@@ -5,6 +5,7 @@ from compare_model import compare_nbr_token_by_chunk
 from extract import extract_all
 from chunk import chunk_fill
 from embed import encoding_text
+from search import search
 
 def main():
     model = SentenceTransformer("sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2")
@@ -15,6 +16,7 @@ def main():
     # compare_nbr_token_by_chunk("sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2", chunks)
     
     encoding_text(model, chunks)
+    search("Qu'est-ce qu'une fonction réciproque ?", model, 3)
 
    
 

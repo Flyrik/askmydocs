@@ -17,7 +17,11 @@ loin = ["Le marché boursier s'est effondré."]
 
 
 
-# 2. Calculate embeddings by calling model.encode()
+# Cette fonction permet de récupérer les informations d'un modèle donné.
+# Elle affiche la longueur maximale de séquence pour le modèle,
+# le nombre de tokens dans le texte, et les tokens eux-mêmes.
+#Chaque modèle a une longueur maximale de séquence qu'il peut gérer. Si le texte dépasse cette limite, il sera tronqué. Cette fonction permet de vérifier si le texte est en dessous de cette limite.
+#Chaque modèle a un tokenizer qui découpe le texte en tokens. Cette fonction permet de vérifier combien de tokens sont générés pour un texte donné, et quels sont ces tokens.
 
 def information_model(model_name, text):
     model = SentenceTransformer(model_name)
