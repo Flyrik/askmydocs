@@ -58,6 +58,64 @@ Pistes d'amelioration (a tester a l'etape evaluation) :
 
 
 
+ETAPE 3 : EMBEDDINGS + BASE VECTORIELLE
+
+Etape                                              Fonction        Fichier
+-------------------------------------------------  --------------  --------
+Chargement du modele (une seule fois)              main            main.py
+Encodage des chunks + stockage dans ChromaDB       encoding_text   embed.py
+Tests de modeles (scores, nombre de tokens)        compare, ...    compare_model.py
+
+Concepts :
+- embedding = texte transforme en vecteur (384 nombres pour notre modele)
+- des textes de sens proche donnent des vecteurs proches
+- proximite mesuree par la cosine similarity (angle entre les vecteurs) :
+  1 = meme sens, 0 = aucun rapport
+- model.encode() fait tout : tokenisation, troncature a la limite,
+  un vecteur par token, puis pooling (moyenne) -> 1 vecteur par chunk
+
+Choix du modele : paraphrase-multilingual-MiniLM-L12-v2
+- test "chat sur le tapis" vs "felin sur la moquette" (proche)
+  et "marche boursier" (hors sujet) :
+    all-MiniLM-L6-v2 (anglais)      : 0.43 vs 0.38 -> ecart 0.05
+    paraphrase-multilingual-MiniLM  : 0.27 vs 0.04 -> ecart 0.23
+  -> le modele anglais ne distingue presque pas le sens en francais
+- multilingual-e5-base teste aussi : scores tasses (0.88 vs 0.79),
+  chaque modele a sa propre echelle -> on compare l'ecart et le
+  classement, jamais les scores bruts entre modeles
+- limite du modele : 128 tokens -> voir etape 2 (chunks de 126 tokens)
+- le modele est charge une seule fois dans main.py et passe en
+  parametre au chunking ET a l'embedding (meme tokenizer partout)
+
+Base vectorielle : ChromaDB
+- pourquoi pas une liste Python : elle disparait a la fin du programme
+  (RAM), et la recherche devient lente avec des millions de chunks
+- PersistentClient(path="chroma_db") : donnees sauvegardees sur le disque
+- collection = "table" de la base
+- chaque chunk stocke : id, vecteur, texte, metadonnees (page, path)
+- on fournit NOUS-MEMES les embeddings, sinon ChromaDB utiliserait
+  son propre modele par defaut (anglais)
+- la collection est supprimee puis recreee a chaque reconstruction :
+  upsert met a jour les chunks modifies, mais ne supprime pas ceux
+  qui n'existent plus (ex : PDF retire)
+- NotFoundError attrape : au premier lancement, la collection n'existe pas
+- distance configuree en "cosine" a la creation de la collection :
+  ChromaDB s'en sert pour construire son index HNSW (reseau qui relie
+  chaque chunk a ses voisins les plus proches) -> recherche rapide
+  sans comparer la question a TOUS les chunks
+- ChromaDB renvoie une DISTANCE = 1 - similarite (petite = proche)
+- resultat : 431 chunks stockes
+
+Pistes d'amelioration :
+- encoder tous les chunks en un seul appel (au lieu d'un par un)
+- tester un modele a plus grande limite (multilingual-e5, bge-m3)
+- Qdrant a la place de ChromaDB pour une version "production"
+
+
+
+
+
+
 
 INFORMATIONS :
 
