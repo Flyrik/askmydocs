@@ -1,15 +1,31 @@
 import chromadb
 from sentence_transformers import SentenceTransformer
+from chromadb.errors import NotFoundError
 
 
 
 
-def encoding_text(model_name, chunks):
+def encoding_text(model, chunks):
     #Créer une table/ collection
     client = chromadb.PersistentClient(path="chroma_db")
-    vecteor_chunk = client.get_or_create_collection(name="vecteor_chunk")
-    model = SentenceTransformer(model_name)
+    try :
+        client.delete_collection(name="vecteor_chunk")
 
+    except NotFoundError:
+        pass
+
+    vecteor_chunk = client.get_or_create_collection(
+    name="vecteor_chunk",
+    configuration={"hnsw": {"space": "cosine"}},)
+# "space": "cosine" -> les chunks sont comparés par l'ANGLE entre leurs
+# vecteurs (= leur sens), pas par la distance entre leurs bouts.
+# Ce réglage se fait à la création, car ChromaDB s'en sert pour construire
+# son index HNSW : un réseau qui relie chaque chunk à ses voisins les plus
+# proches, pour chercher vite sans tout comparer.
+# Attention : ChromaDB renvoie une DISTANCE (= 1 - similarité cosine),
+# donc plus elle est petite, plus le chunk est proche.
+
+    
     for i, chunk in enumerate(chunks):
         text = chunk["text"]
         chunk_embedding = model.encode(text)
@@ -22,6 +38,7 @@ def encoding_text(model_name, chunks):
 
         vecteor_chunk.upsert(
             documents=[text],
+
             embeddings = chunk_embedding,
             metadatas=[{"page": chunk["page"], "path": chunk["path"]}],
             ids = [str(i)]
