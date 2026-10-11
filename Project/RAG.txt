@@ -113,7 +113,7 @@ Pistes d'amelioration :
 
 
 
-
+ETAPE 4 : RAG SIMPLE
 
 
 
