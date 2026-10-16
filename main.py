@@ -16,7 +16,7 @@ def main():
     # compare_nbr_token_by_chunk("sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2", chunks)
     
     encoding_text(model, chunks)
-    search("Qu'est-ce qu'une fonction réciproque ?", model, 3)
+    print(search("Ou est l'éléctron ?", model, 3))
 
    
 

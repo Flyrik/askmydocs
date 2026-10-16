@@ -43,8 +43,8 @@ def encoding_text(model, chunks):
             metadatas=[{"page": chunk["page"], "path": chunk["path"]}],
             ids = [str(i)]
         )
-    print(client.list_collections()) #list les collections existantes dans la base de données
-    print(vecteor_chunk.peek())    # aperçu des premiers éléments
-    print(vecteor_chunk.count())   # nombre total d'éléments dans la collection
+    # print(client.list_collections()) #list les collections existantes dans la base de données
+    # print(vecteor_chunk.peek())    # aperçu des premiers éléments
+    # print(vecteor_chunk.count())   # nombre total d'éléments dans la collection
     
 
