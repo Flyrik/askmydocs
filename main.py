@@ -21,7 +21,7 @@ def main():
             print(ask_llm(text, model, 3)) 
         except Exception as e:
             print(f"Une erreur s'est produite : {e}")
-            
+
         print("\n") 
         y = int(input("Voulez-vous poser une autre question ?\n1. Oui\n2. Non\n\n"))
         if y == 1:
@@ -32,10 +32,14 @@ def main():
  
 def Start_option():    
     x = 0
+
     while x != 1:
-        x = int(input("Choisissez une option :\n1. Poser une question\n\n"))
-        if x == 1:
-            break
+        try :
+            x = int(input("Choisissez une option :\n1. Poser une question\n\n"))
+        except ValueError:
+            print("Entrée invalide. Veuillez entrer un nombre entier.")
+            continue
+        
     return x
 
 

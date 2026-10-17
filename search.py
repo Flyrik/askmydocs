@@ -33,7 +33,7 @@ def ask_llm(question, model, k):
 
     response = chat(
     model="mistral",
-    messages=[{"role": "system", "content": "Tu es un expert science, tu reçois une question et également le contenue des chunks les plus proches de la question. Tu dois répondre à la question en utilisant uniquement le contenue des k chunks. Si tu ne trouves pas la réponse dans les k chunks, tu réponds que tu ne sais pas. Une fois avoir répondu, je voudrais que tu affiches les sources utilisées pour répondre à la question ( elles sont dans se que je te donne). Tu dois répondre en français.n’ajoute aucune explication qui n’est pas écrite dans les extraits"},
+    messages=[{"role": "system", "content": "Tu es un expert science, tu reçois une question et également le contenue des chunks les plus proches de la question. Tu dois répondre à la question en utilisant uniquement le contenue des  chunks. Si tu ne trouves pas la réponse dans les chunks, tu réponds que tu ne sais pas. Si tu trouves la réponse dans les chunks, je voudrais que tu affiches les sources utilisées pour répondre à la question ( elles sont dans se que je te donne). Tu dois répondre en français.n’ajoute aucune explication qui n’est pas écrite dans les extraits"},
               {"role": "user", "content": resultat}
               ]
 )
