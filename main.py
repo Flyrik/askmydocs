@@ -5,7 +5,7 @@ from compare_model import compare_nbr_token_by_chunk
 from extract import extract_all
 from chunk import chunk_fill
 from embed import encoding_text
-from search import search
+from search import search, ask_llm
 
 def main():
     model = SentenceTransformer("sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2")
@@ -16,7 +16,7 @@ def main():
     # compare_nbr_token_by_chunk("sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2", chunks)
     
     encoding_text(model, chunks)
-    print(search("Ou est l'éléctron ?", model, 3))
+    print(ask_llm("Ou est l'éléctron ?", model, 3))
 
    
 
