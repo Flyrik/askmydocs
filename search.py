@@ -25,7 +25,7 @@ def ask_llm(question, model, k):
     list_doc_meta = []
 
     for document, metadata in zip(documents, metadatas):
-        list_doc_meta.append(f"Chunk: {document}\nMetadata: {metadata}")
+        list_doc_meta.append(f"Chunk: {document}\nSource: {metadata}")
     list_doc_meta.append(f"\nQuestion: {question}\n")
     resultat = "\n".join(list_doc_meta)
     print(f"Résultat de la recherche: {resultat}")
@@ -33,9 +33,10 @@ def ask_llm(question, model, k):
 
     response = chat(
     model="mistral",
-    messages=[{"role": "user", "content": resultat},
-              {"role": "system", "content": "Tu es un expert science, tu reçois une question et également le contenue des k chunks les plus proches de la question. Tu dois répondre à la question en utilisant uniquement le contenue des k chunks. Si tu ne trouves pas la réponse dans les k chunks, tu réponds que tu ne sais pas."}]
+    messages=[{"role": "system", "content": "Tu es un expert science, tu reçois une question et également le contenue des chunks les plus proches de la question. Tu dois répondre à la question en utilisant uniquement le contenue des k chunks. Si tu ne trouves pas la réponse dans les k chunks, tu réponds que tu ne sais pas. Une fois avoir répondu, je voudrais que tu affiches les sources utilisées pour répondre à la question ( elles sont dans se que je te donne). Tu dois répondre en français."},
+              {"role": "user", "content": resultat}
+              ]
 )
 
   
-# print(response["message"]["content"])
+    return response["message"]["content"]
