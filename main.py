@@ -16,7 +16,7 @@ def main():
     # compare_nbr_token_by_chunk("sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2", chunks)
     
     encoding_text(model, chunks)
-    print(ask_llm("Ou est l'éléctron ?", model, 3))
+    print(ask_llm("Coupe du monde 2018", model, 3))
 
    
 
