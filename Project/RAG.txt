@@ -113,7 +113,71 @@ Pistes d'amelioration :
 
 
 
-ETAPE 4 : RAG SIMPLE
+ETAPE 4 : RAG SIMPLE (RECHERCHE + LLM)
+
+Etape                                              Fonction    Fichier
+-------------------------------------------------  ----------  ----------
+Recherche des k chunks les plus proches            search      search.py
+Construction du prompt + appel au LLM              ask_llm     search.py
+
+Fonctionnement :
+question -> encode (MEME modele que les chunks) -> collection.query()
+         -> k chunks (texte + source + distance)
+         -> texte assemble (extraits + sources + question)
+         -> Mistral (via Ollama) -> reponse
+
+4a - Recherche (search) :
+- client.get_collection() : on LIT la collection existante
+  (sans la supprimer ni la recreer)
+- la question est encodee avec le meme modele que les chunks,
+  sinon les vecteurs ne sont pas comparables
+- query_embeddings=[vecteur] : une LISTE de questions, d'ou les
+  resultats en listes de listes et le [0]
+- k = nombre de chunks recuperes (top-k), k = 3 pour l'instant
+- on ne "decode" jamais un vecteur : le texte est stocke a cote
+- renvoie un tuple : (textes, metadonnees, distances), listes alignees
+
+4b - LLM (ask_llm) :
+- Ollama = outil qui fait tourner des LLM en local
+  (comme VLC pour des films), serveur sur le PC (localhost:11434)
+- modele : mistral (~7B, 4.4 Go), bon en francais, tourne sur la 5080
+- tout tourne en local : gratuit, sans internet, donnees privees
+- le LLM ne lit que du TEXTE : on assemble extraits + sources +
+  question en une seule chaine (zip + f-string + join)
+- messages = liste de roles imposes :
+    system    -> les instructions (la "fiche de poste")
+    user      -> extraits + question
+    assistant -> la reponse du modele
+- reponse dans response["message"]["content"]
+
+Message system (regles) :
+- repondre uniquement a partir des extraits fournis
+- si la reponse n'y est pas : dire qu'on ne sait pas
+- citer la source (fichier + page)
+- repondre en francais
+
+Tests :
+- "Ou est l'electron ?" -> reponse basee sur la page 53, avec source
+- "Qui a gagne la Coupe du monde 2018 ?" -> "la reponse n'est pas
+  dans les extraits" : pas d'invention
+- sans RAG, Mistral repond de memoire, sans source verifiable
+
+Problemes observes :
+- la recherche remonte des extraits qui PARLENT du sujet sans y
+  REPONDRE (page 37 : pose la question "ou sont les electrons ?")
+- le LLM ajoute une affirmation absente des sources
+  ("il ne tombe pas CAR...") tout en citant une source
+  -> une citation ne garantit pas que tout est verifie
+- le decoupage peut separer des infos liees (la formule de la
+  page 53 etait dans un autre chunk, non recupere)
+
+Pistes d'amelioration :
+
+- tester k = 3 vs k = 5 sur les memes questions
+- reranking (etape 6) : recuperer beaucoup de chunks, garder les meilleurs
+- verifier les citations automatiquement (etape 7)
+- separer search() et ask_llm() pour pouvoir changer la recherche
+- centraliser "chroma_db" et le nom de la collection dans des constantes
 
 
 
