@@ -11,24 +11,24 @@ model = SentenceTransformer("sentence-transformers/paraphrase-multilingual-MiniL
 
 def main():
     
-    
+    exit_bool = False
     x = Start_option()
 
     if x == 1:
-        try :
-            text = input("Entrez votre question que vous voulez poser au LLM : ")    
-    
-            print(ask_llm(text, model, 3)) 
-        except Exception as e:
-            print(f"Une erreur s'est produite : {e}")
+        while not exit_bool:
+            try :
+                text = input("Entrez votre question que vous voulez poser au LLM : ")    
+        
+                print(ask_llm(text, model, 3)) 
+            except Exception as e:
+                print(f"Une erreur s'est produite : {e}")
 
-        print("\n") 
-        y = int(input("Voulez-vous poser une autre question ?\n1. Oui\n2. Non\n\n"))
-        if y == 1:
-            main()
-        else:
-            print("Merci d'avoir utilisé le programme. Au revoir !")
-            exit()
+            print("\n") 
+            y = int(input("Voulez-vous poser une autre question ?\n1. Oui\n2. Non\n\n"))
+            if y == 2:
+                print("Merci d'avoir utilisé le programme. Au revoir !")
+                
+                exit_bool = True
  
 def Start_option():    
     x = 0

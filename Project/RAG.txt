@@ -179,7 +179,7 @@ Pistes d'amelioration :
 - separer search() et ask_llm() pour pouvoir changer la recherche
 - centraliser "chroma_db" et le nom de la collection dans des constantes
 
-
+Étape 5 : la recherche hybride
 
 INFORMATIONS :
 
