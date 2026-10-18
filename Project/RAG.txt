@@ -179,7 +179,26 @@ Pistes d'amelioration :
 - separer search() et ask_llm() pour pouvoir changer la recherche
 - centraliser "chroma_db" et le nom de la collection dans des constantes
 
-Étape 5 : la recherche hybride
+ETAPE 5 : RECHERCHE HYBRIDE (SEMANTIQUE + BM25)
+
+
+Pourquoi : la recherche semantique seule trouve bien les questions
+"de sens", mais rate les termes precis (noms propres, numeros,
+abreviations).
+
+Question                      Type de terme          Bon chunk trouve ?
+----------------------------  ---------------------  ------------------
+Regle de L'Hopital            nom propre             NON
+Theoreme 2.3.1                numero                 NON
+CC2                           code / abreviation     NON
+
+
+Explication : un embedding capte le sens GENERAL d'un chunk (moyenne
+de tous ses tokens). Un mot precis y est noye, et un nom comme
+"L'Hopital" ( théroeme de l'hopital) peut meme etre compris dans un autre sens (un hopital).
+Solution : ajouter une recherche par mots exacts (BM25), puis fusionner
+les deux classements.
+
 
 INFORMATIONS :
 
