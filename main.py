@@ -3,6 +3,7 @@ from tokenize import tokenize
 
 from sentence_transformers import SentenceTransformer
 
+from bm25 import tokenize_chunks
 from compare_model import compare_nbr_token_by_chunk
 from extract import extract_all
 from chunk import chunk_fill
@@ -55,8 +56,7 @@ def initialisation():
     # compare_nbr_token_by_chunk("sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2", chunks)
     
     encoding_text(model, chunks)
-    print(tokenize(chunks))
-    print("C'est quoi la règle de L'Hôpital ?".split(" "))
+    print(tokenize_chunks(chunks))
    
 
 if __name__ == "__main__":
