@@ -2,6 +2,7 @@ import chromadb
 from sentence_transformers import SentenceTransformer
 import ollama
 from ollama import chat
+# Cette fonction permet de rechercher les chunks les plus pertinents par rapport à une question donnée. Elle encode la question en vecteur, puis interroge la collection ChromaDB pour récupérer les k chunks les plus proches de la question. Les résultats incluent le texte des chunks, leurs métadonnées (page et chemin du fichier), et la distance entre la question et chaque chunk.
 def search(question, model, k):
 
     client = chromadb.PersistentClient(path="chroma_db")
@@ -18,7 +19,7 @@ def search(question, model, k):
     return results["documents"][0], results["metadatas"][0], results["distances"][0]
 
 
-
+#Fonction qui permet de poser une question au LLM, en lui donnant les chunks les plus proches de la question. Il possède un système de prompt qui lui demande de répondre uniquement avec les informations données.
 def ask_llm(question, model, k):
 
     documents, metadatas, distances = search(question, model, k)

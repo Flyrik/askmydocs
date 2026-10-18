@@ -87,7 +87,7 @@ def check_repetion(pages):
         
     return dico
 
-
+# Fonction qui permet de supprimer les doublons de pages dans le PDF. Une page est considérée comme un doublon si elle a exactement le même contenu qu'une autre page. Cette fonction compare chaque page avec toutes les autres pages suivantes pour vérifier si elles sont identiques. Si une page est trouvée comme doublon, elle n'est pas ajoutée à la liste finale des pages à conserver.
 def remove_doublon(pages):
     list_gard = []
     
@@ -103,6 +103,8 @@ def remove_doublon(pages):
         if not est_doublon:
             list_gard.append(pages[i])
     return list_gard#Enleve les pieds de page du PDF, en se basant sur le nombre de répétitions de chaque ligne dans le PDF.
+
+# Fonction qui permet de supprimer les pieds de page d'un PDF. Un pied de page est défini comme une ligne de texte qui apparaît sur plus de la moitié des pages du document. Cette fonction identifie ces lignes répétitives et les supprime de chaque page, ne conservant que le contenu principal du texte.
 def remove_footer(pages):
     
     

@@ -34,6 +34,7 @@ def information_model(model_name, text):
     print(len(text)/nbr_token, "caractères par token")
     return model
 
+# Permets de comparer la similarité entre une phrase de référence et deux autres phrases (proche et loin) en utilisant un modèle de Sentence Transformer donné. 
 def compare(model_name, reference, proche, loin):
     # 1. Load a pretrained Sentence Transformer model
 
